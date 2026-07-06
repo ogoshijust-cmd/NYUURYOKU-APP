@@ -38,4 +38,67 @@
     }
 })();
 </script>
+
+<script>
+window.isPinching = false;
+window.lastPinchTime = 0;
+
+if(typeof originalOpenModal === "undefined" && typeof window.openModal === "function") {
+    window.originalOpenModal = window.openModal;
+    window.openModal = function(id) {
+        if(id === "actionMenuModal" && (window.isPinching || Date.now() - window.lastPinchTime < 500)) {
+            return;
+        }
+        window.originalOpenModal(id);
+    };
+}
+
+(function() {
+    let initialDistance = null;
+    let initialZoom = 1;
+    const scrollArea = document.getElementById("tableScrollArea");
+    if(scrollArea) {
+        scrollArea.addEventListener("touchstart", function(e) {
+            if(e.touches.length >= 2) {
+                window.isPinching = true;
+                window.lastPinchTime = Date.now();
+                initialDistance = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+                initialZoom = currentZoom;
+                if(e.cancelable) e.preventDefault();
+            }
+        }, {passive: false, capture: true});
+        
+        scrollArea.addEventListener("touchmove", function(e) {
+            if(e.touches.length >= 2) {
+                window.isPinching = true;
+                window.lastPinchTime = Date.now();
+                if(initialDistance) {
+                    const currentDistance = Math.hypot(
+                        e.touches[0].pageX - e.touches[1].pageX,
+                        e.touches[0].pageY - e.touches[1].pageY
+                    );
+                    const scale = currentDistance / initialDistance;
+                    let newZoom = initialZoom * scale;
+                    if(newZoom > 3) newZoom = 3;
+                    if(newZoom < 0.2) newZoom = 0.2;
+                    currentZoom = newZoom;
+                    updateZoomDisplay();
+                }
+                if(e.cancelable) e.preventDefault();
+            }
+        }, {passive: false, capture: true});
+        
+        scrollArea.addEventListener("touchend", function(e) {
+            if(e.touches.length < 2) {
+                window.isPinching = false;
+                window.lastPinchTime = Date.now();
+                initialDistance = null;
+            }
+        }, {capture: true});
+    }
+})();
+</script>
 </body></html>
