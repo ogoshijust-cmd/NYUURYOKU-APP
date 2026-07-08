@@ -41,8 +41,7 @@
                 if(e.type==='mousedown'&&e.button!==0)return;
                 isLP = false;
                 if(currentMode === 'pencil') {
-                    pressT = setTimeout(()=>{ 
-                        if(tr) {
+                    pressT = setTimeout(()=>{ if(cell.classList.contains('row-num-cell')) return; if(tr) {
                             let handled = false;
                             const cIdx = parseInt(cell.dataset.c);
                             if (cIdx > 0) {
