@@ -1,0 +1,11 @@
+﻿
+> app_formatted.js:1006:                        const div = el('div', 'flex justify-between items-center bg-white borde
+r px-3 py-1.5 rounded-lg gap-2 shadow-sm cursor-move touch-manipulation');
+  app_formatted.js:1007: div.dataset.val = item;
+  app_formatted.js:1008:                        div.appendChild(el('span', 'text-gray-400 mr-1', {
+> app_formatted.js:1039:                     const div = el('div', 'flex justify-between items-center bg-white border p
+x-3 py-1.5 rounded-lg gap-3 shadow-sm cursor-move touch-manipulation');
+  app_formatted.js:1040: div.dataset.val = item;
+  app_formatted.js:1041:                    div.appendChild(el('span', 'text-gray-400 mr-1', {
+
+

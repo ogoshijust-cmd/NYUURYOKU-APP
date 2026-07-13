@@ -1,0 +1,62 @@
+﻿
+> app_formatted.js:20:            if(opts.colSpan) e.colSpan = opts.colSpan;
+  app_formatted.js:21:            if(opts.value) e.value = opts.value;
+  app_formatted.js:22:            return e;
+  app_formatted.js:23:        }
+  app_formatted.js:24:;
+  app_formatted.js:25:        const defMaster = {
+> app_formatted.js:2186:                let colSpanLen = 6;
+> app_formatted.js:2187:                if (!hasUT) colSpanLen--;
+> app_formatted.js:2188:                if (!showBikou) colSpanLen--;
+> app_formatted.js:2189:                th.colSpan = colSpanLen;
+  app_formatted.js:2190:            }
+  app_formatted.js:2191:);
+  app_formatted.js:2192:        }
+  app_formatted.js:2193:        function renderHeaders() {
+  app_formatted.js:2194:            const h1 = $('headerRow1'), h2 = $('headerRow2');
+> app_formatted.js:2207:colSpan: 6}
+  app_formatted.js:2208:);
+  app_formatted.js:2209:                const container = el('div', 'lot-blocks-container flex-1 flex flex-col gap-1 ju
+stify-center w-full transition-all duration-200');
+  app_formatted.js:2210:                container.appendChild(createLotBlock());
+  app_formatted.js:2211: th.appendChild(container);
+  app_formatted.js:2212: h1.appendChild(th);
+> app_formatted.js:2319:colSpan: 6}
+  app_formatted.js:2320:);
+  app_formatted.js:2321:            const container = el('div', 'lot-blocks-container flex-1 flex flex-col gap-1 justif
+y-center w-full transition-all duration-200');
+  app_formatted.js:2322: container.appendChild(createLotBlock());
+  app_formatted.js:2323: th.appendChild(container);
+  app_formatted.js:2324: h1.appendChild(th);
+> app_formatted.js:3781:                                                let colSpanLen = 4;
+> app_formatted.js:3782: if(hasUT) colSpanLen++;
+> app_formatted.js:3783: if(showBikou) colSpanLen++;
+> app_formatted.js:3784: if(hasSuminiku) colSpanLen = 1;
+> app_formatted.js:3785:                         worksheet.mergeCells(1, colIndex + 1, 1, colIndex + colSpanLen);
+  app_formatted.js:3786:                         /* ヘッダー行2: ロット詳細ラベル */                        let detailColIndex = col
+Index + 1;
+  app_formatted.js:3787:                        const labels = ['階', '方向', '部位', '枝番', '備考', '検査数'];
+  app_formatted.js:3788:                        labels.forEach((lbl, idx) => {
+  app_formatted.js:3789:                            let skip = false;
+  app_formatted.js:3790: if (hasSuminiku && idx < 5) skip = true;
+> app_formatted.js:3821:                        colIndex += 1 + colSpanLen;
+  app_formatted.js:3822: if (c < s.lc - 1) {
+  app_formatted.js:3823: worksheet.getColumn(colIndex).width = 2;
+  app_formatted.js:3824: colIndex++;
+  app_formatted.js:3825: }
+  app_formatted.js:3826:                    }
+> app_formatted.js:4277:                        let colSpanLen = 4;
+> app_formatted.js:4278: if(hasUT) colSpanLen++;
+> app_formatted.js:4279: if(showBikou) colSpanLen++;
+> app_formatted.js:4280: if(hasSuminiku) colSpanLen = 1;
+  app_formatted.js:4281: const thLot = document.createElement('th');
+  app_formatted.js:4282: thLot.className = 'p-1 bg-blue-50 border-thick-left border-thick-right border-thick-top border
+-thick-bottom';
+> app_formatted.js:4283: thLot.colSpan = colSpanLen;
+  app_formatted.js:4284:                        const cont = document.createElement('div');
+  app_formatted.js:4285: cont.className = 'flex-1 flex flex-col gap-0.5 justify-center w-full';
+  app_formatted.js:4286:                        (lotBlocks.length > 0 ? lotBlocks : [{
+  app_formatted.js:4287:s:'',k:'',u:'',c:'black'}
+  app_formatted.js:4288:]).forEach((lb, idx) => {
+
+

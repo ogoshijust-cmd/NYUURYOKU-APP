@@ -1,0 +1,58 @@
+﻿
+> app_formatted.js:964:        function renderMasterItems() {
+  app_formatted.js:965:             $('masterTitle').textContent = catDefs.find(c => c.id === activeCat).n;
+  app_formatted.js:966: const container = $('masterItemList');
+  app_formatted.js:967: container.innerHTML = '';
+  app_formatted.js:968: const subCatSelect = $('newMasterSubCat');
+  app_formatted.js:969:                        const excelSec = $('excelImportSection');
+  app_formatted.js:970:            if (excelSec) {
+  app_formatted.js:971:                if (activeCat === 'buzai') {
+  app_formatted.js:972:                    excelSec.classList.remove('hidden');
+  app_formatted.js:973:                    excelSec.classList.add('flex');
+  app_formatted.js:974:                }
+  app_formatted.js:975: else {
+  app_formatted.js:976:                    excelSec.classList.add('hidden');
+  app_formatted.js:977:                    excelSec.classList.remove('flex');
+  app_formatted.js:978:                }
+  app_formatted.js:979:            }
+  app_formatted.js:980:            migrateMasterData(getMaster());
+  app_formatted.js:981: masterSortables.forEach(s => s.destroy());
+  app_formatted.js:982: masterSortables = [];
+  app_formatted.js:983:                        if (groupDefs[activeCat]) {
+  app_formatted.js:984:                subCatSelect.classList.remove('hidden');
+  app_formatted.js:985:                if (subCatSelect.options.length === 0 || subCatSelect.dataset.cat !== activeCat)
+ {
+  app_formatted.js:986:                    subCatSelect.innerHTML = '';
+  app_formatted.js:987: groupDefs[activeCat].forEach(sub => {
+  app_formatted.js:988: subCatSelect.appendChild(el('option', '', {
+  app_formatted.js:989:value: sub, text: sub}
+  app_formatted.js:990:));
+  app_formatted.js:991: }
+  app_formatted.js:992:);
+  app_formatted.js:993: subCatSelect.dataset.cat = activeCat;
+  app_formatted.js:994:                }
+  app_formatted.js:995:                groupDefs[activeCat].forEach(sub => {
+  app_formatted.js:996:                    const items = getMaster()[activeCat][sub] || [];
+  app_formatted.js:997: const groupDiv = el('div', 'w-full mb-4');
+  app_formatted.js:998: groupDiv.appendChild(el('div', 'font-bold text-gray-700 mb-2 border-b-2 border-gray-200 pb-1', 
+{
+  app_formatted.js:999:text: `■ ${
+  app_formatted.js:1000:sub}
+  app_formatted.js:1001:`}
+  app_formatted.js:1002:));
+  app_formatted.js:1003:                    const itemBox = el('div', 'flex flex-wrap gap-2 master-sortable-group min-h
+-[50px] p-2 bg-gray-50 rounded-lg border border-dashed border-gray-300');
+  app_formatted.js:1004: itemBox.dataset.subcat = sub;
+  app_formatted.js:1005:                    items.forEach((item, idx) => {
+  app_formatted.js:1006:                        const div = el('div', 'flex justify-between items-center bg-white borde
+r px-3 py-1.5 rounded-lg gap-2 shadow-sm cursor-move touch-manipulation');
+  app_formatted.js:1007: div.dataset.val = item;
+  app_formatted.js:1008:                        div.appendChild(el('span', 'text-gray-400 mr-1', {
+  app_formatted.js:1009:html: '&#x2630;
+  app_formatted.js:1010:'}
+  app_formatted.js:1011:));
+  app_formatted.js:1012: div.appendChild(el('span', 'font-bold text-sm text-gray-800', {
+  app_formatted.js:1013:text: item}
+  app_formatted.js:1014:));
+
+

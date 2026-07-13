@@ -1,0 +1,56 @@
+﻿
+> app_formatted.js:3009:        function setupInputMasterBtns(type) {
+  app_formatted.js:3010:            const box = $('inputMasterBtns');
+  app_formatted.js:3011: box.innerHTML = '';
+  app_formatted.js:3012: migrateMasterData(getMaster());
+  app_formatted.js:3013:            if (type === 'kensasu') {
+  app_formatted.js:3014:                $('minusToggleBtn').classList.remove('hidden');
+  app_formatted.js:3015: box.className = 'grid grid-cols-3 gap-2';
+  app_formatted.js:3016: const keys = ['7','8','9','4','5','6','1','2','3','0','.','×'];
+  app_formatted.js:3017:                keys.forEach(k => {
+  app_formatted.js:3018:                    const btn = el('button', 'bg-gray-100 border rounded-xl p-4 font-bold activ
+e:bg-blue-200 text-2xl shadow-sm', {
+  app_formatted.js:3019:text: k}
+  app_formatted.js:3020:);
+  app_formatted.js:3021: btn.type = 'button';
+  app_formatted.js:3022:                    btn.onclick = () => {
+  app_formatted.js:3023: const input = $('customInput');
+  app_formatted.js:3024: if (k === '×') {
+  app_formatted.js:3025: input.value = input.value.slice(0, -1);
+  app_formatted.js:3026: }
+  app_formatted.js:3027: else if (k === '-') {
+  app_formatted.js:3028: if (input.value.startsWith('-')) input.value = input.value.slice(1);
+  app_formatted.js:3029: else input.value = '-' + input.value;
+  app_formatted.js:3030: }
+  app_formatted.js:3031: else {
+  app_formatted.js:3032: input.value += k;
+  app_formatted.js:3033: }
+  app_formatted.js:3034: /* input.focus();
+  app_formatted.js:3035: disabled for iPad */ }
+  app_formatted.js:3036:;
+  app_formatted.js:3037: box.appendChild(btn);
+  app_formatted.js:3038:                }
+  app_formatted.js:3039:);
+  app_formatted.js:3040:                const decideBtn = el('button', 'col-span-3 bg-blue-600 text-white border rounde
+d-xl p-3 font-bold active:bg-blue-700 text-xl shadow-sm mt-1', {
+  app_formatted.js:3041:text: '決定'}
+  app_formatted.js:3042:);
+  app_formatted.js:3043: decideBtn.type = 'button';
+  app_formatted.js:3044: decideBtn.onclick = () => {
+  app_formatted.js:3045: $('customInput').blur();
+  app_formatted.js:3046: applyCustomInput();
+  app_formatted.js:3047: }
+  app_formatted.js:3048:;
+  app_formatted.js:3049: box.appendChild(decideBtn);
+  app_formatted.js:3050:            }
+  app_formatted.js:3051: else {
+  app_formatted.js:3052:                $('minusToggleBtn').classList.add('hidden');
+  app_formatted.js:3053:                if (groupDefs[type]) {
+  app_formatted.js:3054:                    box.className = 'flex flex-col gap-3';
+  app_formatted.js:3055: const masterObj = getMaster()[type] || {
+  app_formatted.js:3056:}
+  app_formatted.js:3057:;
+  app_formatted.js:3058:                    groupDefs[type].forEach(sub => {
+  app_formatted.js:3059:                        const items = masterObj[sub] || [];
+
+

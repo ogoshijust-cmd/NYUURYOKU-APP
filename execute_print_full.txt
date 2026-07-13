@@ -1,0 +1,108 @@
+﻿
+> app_formatted.js:4161:                async function executePrint(btn) {
+  app_formatted.js:4162:             const originalText = btn.innerHTML;
+  app_formatted.js:4163: btn.innerHTML = '⏳ 処理中...';
+  app_formatted.js:4164: btn.disabled = true;
+  app_formatted.js:4165:            try {
+  app_formatted.js:4166:                closeModal();
+  app_formatted.js:4167: setMode('pencil');
+  app_formatted.js:4168: syncActiveSheetToModel();
+  app_formatted.js:4169: document.body.classList.add('pdf-export-mode');
+  app_formatted.js:4170:                const pdfContainer = document.createElement('div');
+  app_formatted.js:4171: pdfContainer.className = 'pdf-container';
+  app_formatted.js:4172:                sheets.forEach((s, sheetIndex) => {
+  app_formatted.js:4173:                    const sheetWrapper = document.createElement('div');
+  app_formatted.js:4174: sheetWrapper.className = 'sheet-wrapper';
+  app_formatted.js:4175:                    if (sheetIndex > 0) {
+  app_formatted.js:4176: sheetWrapper.classList.add('pdf-page-break');
+  app_formatted.js:4177: sheetWrapper.style.pageBreakBefore = 'always';
+  app_formatted.js:4178: sheetWrapper.style.breakBefore = 'page';
+  app_formatted.js:4179: }
+  app_formatted.js:4180:                    const titleDiv = document.createElement('div');
+  app_formatted.js:4181: titleDiv.style.marginBottom = '5px';
+  app_formatted.js:4182:                     const insText = (recordInfo.inspectors && recordInfo.inspectors.length > 0
+) ? recordInfo.inspectors.join('、') : '未選択';
+  app_formatted.js:4183:                    const dateText = recordInfo.date || '未設定';
+  app_formatted.js:4184:                    titleDiv.innerHTML = `<div style="display:flex;
+  app_formatted.js:4185: justify-content:space-between;
+  app_formatted.js:4186: align-items:flex-end;
+  app_formatted.js:4187:">                        <div style="font-size:12px;
+  app_formatted.js:4188: font-weight:bold;
+  app_formatted.js:4189:">【 ${
+  app_formatted.js:4190:s.name}
+  app_formatted.js:4191: 】</div>                        <div style="font-size:10px;
+  app_formatted.js:4192: font-weight:normal;
+  app_formatted.js:4193: text-align:right;
+  app_formatted.js:4194: color:#333;
+  app_formatted.js:4195:">                            <span style="margin-right:15px;
+  app_formatted.js:4196:">検査日: <span style="font-weight:bold;
+  app_formatted.js:4197: border-bottom:1px solid #333;
+  app_formatted.js:4198: padding:0 5px;
+  app_formatted.js:4199:">${
+  app_formatted.js:4200:dateText}
+  app_formatted.js:4201:</span></span>                            <span>検査員: <span style="font-weight:bold;
+  app_formatted.js:4202: border-bottom:1px solid #333;
+  app_formatted.js:4203: padding:0 5px;
+  app_formatted.js:4204:">${
+  app_formatted.js:4205:insText}
+  app_formatted.js:4206:</span></span>                        </div>                    </div>`;
+  app_formatted.js:4207:                    sheetWrapper.appendChild(titleDiv);
+  app_formatted.js:4208:                    const sums = Array.from({
+  app_formatted.js:4209:length: s.lc}
+  app_formatted.js:4210:, () => [0]);
+  app_formatted.js:4211:                    for(let r = 0;
+  app_formatted.js:4212: r < s.rc;
+  app_formatted.js:4213: r++){
+  app_formatted.js:4214:                        for(let c = 0;
+  app_formatted.js:4215: c < s.lc;
+  app_formatted.js:4216: c++){
+  app_formatted.js:4217:                            const blockIndex = sums[c].length - 1;
+  app_formatted.js:4218: const tdData = s.rows[r] ? s.rows[r][1 + c*6 + 5] : null;
+  app_formatted.js:4219:                            if(tdData && tdData.t){
+  app_formatted.js:4220: const match = tdData.t.match(/-?\d+/);
+  app_formatted.js:4221: if (match) sums[c][blockIndex] += parseInt(match[0], 10);
+  app_formatted.js:4222: }
+  app_formatted.js:4223:                            const tdAny = s.rows[r] ? s.rows[r][1 + c*6] : null;
+  app_formatted.js:4224: if(tdAny && tdAny.db) sums[c].push(0);
+  app_formatted.js:4225:                        }
+  app_formatted.js:4226:                    }
+  app_formatted.js:4227:                    let lastDataIndex = -1;
+  app_formatted.js:4228:                    for(let r = s.rc - 1;
+  app_formatted.js:4229: r >= 0;
+  app_formatted.js:4230: r--){
+  app_formatted.js:4231: let hasData = false;
+  app_formatted.js:4232: const rData = s.rows[r];
+  app_formatted.js:4233: if(rData){
+  app_formatted.js:4234: for(let c = 0;
+  app_formatted.js:4235: c < rData.length;
+  app_formatted.js:4236: c++){
+  app_formatted.js:4237: if(rData[c] && rData[c].t.trim() !== '') {
+  app_formatted.js:4238: hasData = true;
+  app_formatted.js:4239: break;
+  app_formatted.js:4240: }
+  app_formatted.js:4241: }
+  app_formatted.js:4242: }
+  app_formatted.js:4243: if(hasData) {
+  app_formatted.js:4244: lastDataIndex = r;
+  app_formatted.js:4245: break;
+  app_formatted.js:4246: }
+  app_formatted.js:4247: }
+  app_formatted.js:4248:                    const table = document.createElement('table');
+  app_formatted.js:4249: table.className = 'print-table text-center text-sm';
+  app_formatted.js:4250:                    const thead = document.createElement('thead');
+  app_formatted.js:4251: const tr1 = document.createElement('tr');
+  app_formatted.js:4252: const tr2 = document.createElement('tr');
+  app_formatted.js:4253: tr2.className = 'header-row-2';
+  app_formatted.js:4254:                    const thInfo = document.createElement('th');
+  app_formatted.js:4255: thInfo.className = 'p-1 bg-gray-100 border-thick-left border-thick-right border-thick-top bord
+er-thick-bottom';
+  app_formatted.js:4256: const infoParts = s.sheetInfo ? [s.sheetInfo.setsu, s.sheetInfo.taishou, s.sheetInfo.sonota, s
+.sheetInfo.custom].filter(v => v) : [];
+  app_formatted.js:4257:                    thInfo.innerHTML = `<div class="text-[10px] text-gray-500 mb-0.5">シート情報</di
+v><div class="font-bold text-xs text-blue-700 whitespace-pre-wrap leading-tight">${
+  app_formatted.js:4258:infoParts.length > 0 ? infoParts.join('\n') : '未設定'}
+  app_formatted.js:4259:</div>`;
+  app_formatted.js:4260: tr1.appendChild(thInfo);
+  app_formatted.js:4261:                    const thBuzai = document.createElement('th');
+
+
